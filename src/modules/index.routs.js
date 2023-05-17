@@ -10,7 +10,7 @@ import teacherRouter from "./teacher/teacher.router.js"
 export const routes = (app)=>{
     app.use(express.static('uploads'))
     app.use(express.json())
-    app.use(cors())
+    app.use(cors({origin: 'http://localhost:4200'}))
 
     app.use('/examico/user',userRouter)
     app.use('/examico/auth',authRouter)
