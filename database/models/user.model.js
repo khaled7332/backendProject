@@ -56,7 +56,9 @@ userSchema.pre('save', function (){
     this.password = bcrypt.hashSync(this.password, 7)
 })
 userSchema.post('init', function (doc){
-    doc.profilePic= "https://examico.onrender.com/uploads/profileImages/"+ doc.profilePic
+    if (doc.profilePic!=undefined) {
+        doc.profilePic= "https://examico.onrender.com/profileImages/"+ doc.profilePic
+    }
 })
 
 // userSchema.post('findOne',  function (){
