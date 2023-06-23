@@ -40,13 +40,14 @@ const getAllMyExam= catchError(async (req, res ,next)=>{
         }
     });
     !exams && next(new AppError("not found Exams ", 404))
-    const results = exams.map(({ _id, createdBY, title, description, duration, testTaker }) => ({
+    const results = exams.map(({ _id, createdBY, title, description, duration, testTaker,question }) => ({
         ExamId: _id,
         createdBY,
         title,
         description,
         duration,
         testTaker: testTaker.filter((taker) => taker.user._id == req.user.id),
+        question
     }));
     res.status(200).json({message: "success",page:apiFeature.page, results})
 
